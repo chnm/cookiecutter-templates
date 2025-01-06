@@ -1,0 +1,51 @@
+---
+name: {{ cookiecutter.project_slug }}
+
+services:
+  app:
+    build: .
+    image: "rrchnm/{{ cookiecutter.project_slug }}"
+    ports:
+      - 8000:8000
+    volumes:
+      - dj-data:/app
+    environment:
+      - DEBUG=True
+      - DJANGO_SECRET_KEY=thisisnotasecretkey
+      - DJANGO_ALLOWED_HOSTS=localhost
+      - DJANGO_CSRF_TRUSTED_ORIGINS=http://localhost
+{% if cookiecutter.database == 'postgres' %}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME={{ cookiecutter.project_slug }}
+      - DB_USER={{ cookiecutter.project_slug }}
+      - DB_PASSWORD=password
+{% endif %}
+    command: >
+        sh -c "poetry run python3 manage.py migrate &&
+               poetry run python3 manage.py runserver 0.0.0.0:8000"
+{% if cookiecutter.database == 'postgres' %}
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB={{ cookiecutter.project_slug }}
+      - POSTGRES_USER={{ cookiecutter.project_slug }}
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U {{ cookiecutter.project_slug }}"]
+      interval: 2s
+      timeout: 5s
+      retries: 3
+{% endif %}
+
+volumes:
+  dj-data:
+{% if cookiecutter.database == 'postgres' %}
+  pg-data:
+{% endif %}
