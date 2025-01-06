@@ -18,5 +18,10 @@
       "postgres": "PostgreSQL - B.Y.O.D (bring your own database)",
       "sqlite": "SQLite - single file database"
     }
-  }
+
+  },
+
+  "_copy_without_render": [
+    "*.j2"
+  ]
 }
