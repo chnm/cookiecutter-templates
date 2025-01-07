@@ -11,7 +11,6 @@
   "database": ["postgres", "sqlite"],
 
   "use_obj_storage": false,
-  "use_docker": true,
 
   "__prompts__": {
     "python_min_version": "Enter the minimum Python version to be supported",
