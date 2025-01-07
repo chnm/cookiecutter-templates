@@ -46,9 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+{%- if cookiecutter.use_tailwind %}
+    # tailwind
+    'tailwind',
+    'theme',
+{%- endif %}
 {%- if cookiecutter.use_obj_storage %}
+    # obj storage
     'storages',
 {%- endif %}
+    '{{ cookiecutter.initial_app_name }}',
 ]
 
 MIDDLEWARE = [
@@ -153,6 +160,11 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 USE_TZ = True
+
+{%- if cookiecutter.use_tailwind %}
+# Theme
+TAILWIND_APP_NAME = "theme"
+{%- endif %}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

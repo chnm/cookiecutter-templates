@@ -6,21 +6,27 @@
   "project_author_name": "Jason Heppler",
   "project_author_email": "jason.heppler@gmail.com",
   "project_license": "MIT",
+  "initial_app_name": "{{ cookiecutter.project_slug }}",
   "python_min_version": "3.12",
 
   "database": ["postgres", "sqlite"],
 
+  "use_tailwind": true,
   "use_obj_storage": false,
 
   "__prompts__": {
+    "initial_app_name": "Initial Django app to be created",
     "python_min_version": "Enter the minimum Python version to be supported",
     "database": {
     "__prompt__": "Which database do you want to use?",
       "postgres": "PostgreSQL - B.Y.O.D (bring your own database)",
       "sqlite": "SQLite - single file database"
     },
+    "use_tailwind": "Use TailwindCSS from django-tailwind?",
     "use_obj_storage": "Use object storage (MinIO) for media files?"
   },
 
-  "_copy_without_render": []
+  "_copy_without_render": [
+    "if_use_tailwind_theme/*"
+  ]
 }

@@ -6,15 +6,18 @@ authors = ["{{ cookiecutter.project_author_name }} <{{ cookiecutter.project_auth
 license = "{{ cookiecutter.project_license }}"
 readme = "README.md"
 #requires-python = ">={{ cookiecutter.python_min_version }}"
-packages = [{include = "{{ cookiecutter.project_slug }}"}]
+packages = [{include = "{{ cookiecutter.initial_app_name }}"}]
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_min_version }}"
 python-dotenv = "^1.0.1"
-django = "^5.1.4"
-django-environ = "^0.11.2"
 daphne = "^4.0.0"
 whitenoise = "^6.8.2"
+django = "^5.1.4"
+django-environ = "^0.11.2"
+{% if cookiecutter.use_tailwind %}
+django-tailwind = "^3.8.0"
+{%- endif %}
 {% if cookiecutter.database == 'postgres' %}
 # postgres
 psycopg2 = "^2.9.10"

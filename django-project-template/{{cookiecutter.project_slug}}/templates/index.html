@@ -1,0 +1,30 @@
+{% if cookiecutter.use_tailwind %}
+{% raw %}
+{% load static tailwind_tags %}
+{% endraw %}
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{ cookiecutter.project_name }}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% if cookiecutter.use_tailwind %}
+{% raw %}
+		{% tailwind_css %}
+{% endraw %}
+{% endif %}
+	</head>
+
+	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+		<div class="container mx-auto">
+		  <h1 class="text-5xl">Django + Tailwind = ❤️</h1>
+		  <pre>Hello world!</pre>
+	          <pre>fizzbuzz</pre>
+		</div>
+                <ul>
+                    <li><a href="/admin">Django Admin Interface</a></li>
+                </ul>
+	</body>
+</html>
