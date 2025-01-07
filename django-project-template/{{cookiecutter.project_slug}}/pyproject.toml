@@ -27,3 +27,11 @@ boto3 = "^1.35.27"
 #boto3 = "^1.35.27"
 {%- endif %}
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+djhtml = "^3.0.6"
+pre-commit = "^3.7.0"
+django-debug-toolbar = "^4.4.6"
+pytest-django = "^4.8.0"
+pylint-django = "^2.5.5"
+
