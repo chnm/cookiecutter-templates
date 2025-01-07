@@ -5,10 +5,12 @@
   "project_description": "Lorem ipsum dolor sit amet",
   "project_author_name": "Jason Heppler",
   "project_author_email": "jason.heppler@gmail.com",
+  "project_license": "MIT",
   "python_min_version": "3.12",
 
   "database": ["postgres", "sqlite"],
 
+  "use_obj_storage": false,
   "use_docker": true,
 
   "__prompts__": {
@@ -17,11 +19,9 @@
     "__prompt__": "Which database do you want to use?",
       "postgres": "PostgreSQL - B.Y.O.D (bring your own database)",
       "sqlite": "SQLite - single file database"
-    }
-
+    },
+    "use_obj_storage": "Use object storage (MinIO) for media files?"
   },
 
-  "_copy_without_render": [
-    "*.j2"
-  ]
+  "_copy_without_render": []
 }

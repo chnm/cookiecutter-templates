@@ -3,16 +3,27 @@ name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.project_version }}"
 description = "{{ cookiecutter.project_name }}: {{ cookiecutter.project_description }}"
 authors = ["{{ cookiecutter.project_author_name }} <{{ cookiecutter.project_author_email }}>"]
+license = "{{ cookiecutter.project_license }}"
 readme = "README.md"
 #requires-python = ">={{ cookiecutter.python_min_version }}"
 packages = [{include = "{{ cookiecutter.project_slug }}"}]
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_min_version }}"
+python-dotenv = "^1.0.1"
 django = "^5.1.4"
 django-environ = "^0.11.2"
-python-dotenv = "^1.0.1"
 {% if cookiecutter.database == 'postgres' %}
+# postgres
 psycopg2 = "^2.9.10"
-{% endif %}
+{%- endif %}
+
+# obj storage
+{%- if cookiecutter.use_obj_storage %}
+django-storages = "^1.14.4"
+boto3 = "^1.35.27"
+{%- else %}
+#django-storages = "^1.14.4"
+#boto3 = "^1.35.27"
+{%- endif %}
 

@@ -14,17 +14,26 @@ services:
       - DJANGO_SECRET_KEY=thisisnotasecretkey
       - DJANGO_ALLOWED_HOSTS=localhost
       - DJANGO_CSRF_TRUSTED_ORIGINS=http://localhost
-{% if cookiecutter.database == 'postgres' %}
+{%- if cookiecutter.database == 'postgres' %}
       - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME={{ cookiecutter.project_slug }}
       - DB_USER={{ cookiecutter.project_slug }}
       - DB_PASSWORD=password
-{% endif %}
+{%- endif %}
+{%- if cookiecutter.use_obj_storage %}
+      - OBJ_STORAGE=True
+{%- else %}
+      - OBJ_STORAGE=False
+{%- endif %}
+      - OBJ_STORAGE_ACCESS_KEY_ID=placeholder
+      - OBJ_STORAGE_SECRET_ACCESS_KEY=placeholder
+      - OBJ_STORAGE_BUCKET_NAME=placeholder
+      - OBJ_STORAGE_ENDPOINT_URL=https://dev.obj.rrchnm.org
     command: >
         sh -c "poetry run python3 manage.py migrate &&
                poetry run python3 manage.py runserver 0.0.0.0:8000"
-{% if cookiecutter.database == 'postgres' %}
+{%- if cookiecutter.database == 'postgres' %}
     depends_on:
       db:
         condition: service_healthy
@@ -42,10 +51,10 @@ services:
       interval: 2s
       timeout: 5s
       retries: 3
-{% endif %}
+{%- endif %}
 
 volumes:
   dj-data:
-{% if cookiecutter.database == 'postgres' %}
+{%- if cookiecutter.database == 'postgres' %}
   pg-data:
-{% endif %}
+{%- endif %}
