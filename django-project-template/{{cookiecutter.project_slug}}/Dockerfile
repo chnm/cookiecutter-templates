@@ -2,6 +2,7 @@
 FROM rust as volta-build
 WORKDIR /src
 RUN git clone https://github.com/volta-cli/volta.git /src
+RUN git checkout tags/v2.0.2
 RUN cargo build
 RUN ls /src/target/debug
 {% endif %}
