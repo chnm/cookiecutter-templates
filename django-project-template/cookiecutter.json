@@ -1,7 +1,7 @@
 {
   "project_name": "My RRCHNM Django Project",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
-  "project_version": "0.1.0",
+  "_project_version": "0.1.0",
   "project_description": "Lorem ipsum dolor sit amet",
   "project_author_name": "Jason Heppler",
   "project_author_email": "jason.heppler@gmail.com",

@@ -1,6 +1,6 @@
 {
   "name": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}",
-  "version": "{{ cookiecutter.project_version }}",
+  "version": "{{ cookiecutter._project_version }}",
   "author": "Roy Rosenzweig Center for History and New Media <chnm@gmu.edu> (https://rrchnm.org)",
   "volta": {
     "node": "18.15.0",
