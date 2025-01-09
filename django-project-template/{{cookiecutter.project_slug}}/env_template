@@ -1,5 +1,16 @@
 DEBUG=True
 
+# Django
+DJANGO_SECRET_KEY=PLACEHOLDER
+DJANGO_ALLOWED_HOSTS='localhost,"",127.0.0.1,0.0.0.0'
+DJANGO_CSRF_TRUSTED_ORIGINS='http://localhost'
+
+# Database
+DB_NAME={{ cookiecutter.project_slug }}
+DB_USER=jheppler
+DB_PASSWORD=postgres
+DB_HOST=localhost
+
 # Object storage
 {%- if cookiecutter.use_obj_storage %}
 OBJ_STORAGE_SECRET_ACCESS_KEY=PLACEHOLDER
@@ -14,14 +25,3 @@ OBJ_STORAGE=True
 #OBJ_STORAGE_ENDPOINT_URL=https://dev.obj.rrchnm.org
 #OBJ_STORAGE=True
 {%- endif %}
-
-# Django
-DJANGO_SECRET_KEY=PLACEHOLDER
-DJANGO_ALLOWED_HOSTS='localhost,"",127.0.0.1,0.0.0.0'
-DJANGO_CSRF_TRUSTED_ORIGINS='http://localhost'
-
-# Database
-DB_NAME={{ cookiecutter.project_slug }}
-DB_USER=jheppler
-DB_PASSWORD=postgres
-DB_HOST=localhost
