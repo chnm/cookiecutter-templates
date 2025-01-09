@@ -8,6 +8,8 @@ print(f"use_tailwind: {use_tailwind}")
 cwd = os.getcwd()
 print(f"cwd: {cwd}")
 
+os.rename(os.path.join(cwd, 'env_template'), os.path.join(cwd, '.env'))
+
 if use_tailwind:
   print(f"using tailwind")
   os.rename(os.path.join(cwd, 'if_use_tailwind_theme'), os.path.join(cwd, 'theme'))
