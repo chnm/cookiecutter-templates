@@ -27,9 +27,9 @@ services:
 {%- else %}
       - OBJ_STORAGE=False
 {%- endif %}
-      - OBJ_STORAGE_ACCESS_KEY_ID=TYD5LA84DHFQTMXT72ZD
-      - OBJ_STORAGE_SECRET_ACCESS_KEY=wpqxloq0k7Pl5ELF3AhqS+pB+orrd528XB+aO0uo
-      - OBJ_STORAGE_BUCKET_NAME=test1.rrchnm.org
+      - OBJ_STORAGE_ACCESS_KEY_ID=PLACEHOLDER
+      - OBJ_STORAGE_SECRET_ACCESS_KEY=PLACEHOLDER
+      - OBJ_STORAGE_BUCKET_NAME=PLACEHOLDER
       - OBJ_STORAGE_ENDPOINT_URL=https://dev.obj.rrchnm.org
     command: >
         sh -c "poetry run python3 manage.py migrate &&
