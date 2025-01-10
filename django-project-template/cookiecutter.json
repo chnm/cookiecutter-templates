@@ -16,6 +16,9 @@
   "use_obj_storage": false,
 
   "__prompts__": {
+    "project_name": "Enter project name (will only be used as README.md title)",
+    "project_slug": "Enter project slug (will be used in project file structure and configuration files)",
+    "project_description": "Enter brief project description",
     "initial_app_name": "Initial Django app to be created",
     "python_min_version": "Enter the minimum Python version to be supported",
     "django_version": "Enter the Django package version to be used",
