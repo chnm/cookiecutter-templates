@@ -14,6 +14,7 @@
 
   "use_tailwind": true,
   "use_obj_storage": false,
+  "use_allauth": false,
 
   "__prompts__": {
     "project_name": "Enter project name (will only be used as README.md title)",

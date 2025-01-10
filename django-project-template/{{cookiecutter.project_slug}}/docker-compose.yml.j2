@@ -28,6 +28,12 @@ services:
       - DB_PASS={{ template.env.db_pass }}
 {%- endraw %}
 {%- endif %}
+{%- if cookiecutter.use_allauth %}
+{%- raw %}
+      - ALLAUTH_GITHUB_CLIENT_ID={{ template.env.allauth_github_client_id }}
+      - ALLAUTH_GITHUB_CLIENT_SECRET={{ template.env.allauth_github_client_secret }}
+{%- endraw %}
+{%- endif %}
 {%- if cookiecutter.use_obj_storage %}
 {%- raw %}
       - OBJ_STORAGE={{ template.env.obj_storage }}

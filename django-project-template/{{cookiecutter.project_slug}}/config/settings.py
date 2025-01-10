@@ -46,6 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+{%- if cookiecutter.use_allauth %}
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+{%- endif %}
 {%- if cookiecutter.use_tailwind %}
     # tailwind
     'tailwind',
@@ -66,7 +73,13 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+{% if cookiecutter.use_allauth %}
+    # allauth
+    'allauth.account.middleware.AccountMiddleware',
+{% endif %}
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -150,6 +163,29 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+{% if cookiecutter.use_allauth %}
+    # allauth specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+{% endif %}
+]
+
+{% if cookiecutter.use_allauth %}
+# allauth: provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        "VERIFIED_EMAIL": True,
+        "APP": {
+            "client_id": env("ALLAUTH_GITHUB_CLIENT_ID", default="PLACEHOLDER"),
+            "secret": env("ALLAUTH_GITHUB_CLIENT_SECRET", default="PLACEHOLDER"),
+        },
+    }
+}
+{% endif %}
 
 
 # Internationalization

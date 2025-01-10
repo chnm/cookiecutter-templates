@@ -11,6 +11,12 @@ DB_USER=jheppler
 DB_PASSWORD=postgres
 DB_HOST=localhost
 
+{%- if cookiecutter.use_allauth %}
+# django-allauth
+ALLAUTH_GITHUB_CLIENT_ID=PLACEHOLDER
+ALLAUTH_GITHUB_CLIENT_SECRET=PLACEHOLDER
+{%- endif %}
+
 # Object storage
 {%- if cookiecutter.use_obj_storage %}
 OBJ_STORAGE_SECRET_ACCESS_KEY=PLACEHOLDER

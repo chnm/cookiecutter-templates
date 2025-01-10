@@ -15,6 +15,10 @@ daphne = "^4.1.2"
 whitenoise = "^6.8.2"
 django = "^{{ cookiecutter.django_version }}"
 django-environ = "^0.11.2"
+{%- if cookiecutter.use_allauth %}
+# allauth
+django-allauth = {version="^65.3.1", extras=["github"]}
+{%- endif %}
 {% if cookiecutter.use_tailwind %}
 django-tailwind = "^3.8.0"
 {%- endif %}
