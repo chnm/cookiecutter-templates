@@ -69,6 +69,7 @@ services:
 {%- endraw %}
 {%- if cookiecutter.database == 'postgres' %}
 {%- raw %}
+
     depends_on:
       db:
         condition: service_healthy
