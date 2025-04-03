@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.slack',
 {%- endif %}
 {%- if cookiecutter.use_tailwind %}
     # tailwind
@@ -62,6 +63,8 @@ INSTALLED_APPS = [
     # obj storage
     'storages',
 {%- endif %}
+
+    # local apps
     '{{ cookiecutter.initial_app_name }}',
 ]
 
@@ -175,6 +178,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 {% if cookiecutter.use_allauth %}
+# allauth: this is required for slack
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+
 # allauth: provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
@@ -183,6 +189,21 @@ SOCIALACCOUNT_PROVIDERS = {
             "client_id": env("ALLAUTH_GITHUB_CLIENT_ID", default="PLACEHOLDER"),
             "secret": env("ALLAUTH_GITHUB_CLIENT_SECRET", default="PLACEHOLDER"),
         },
+    },
+    'slack': {
+        'VERIFIED_EMAIL': True,
+        'APP': {
+            "client_id": env("ALLAUTH_SLACK_CLIENT_ID", default="PLACEHOLDER"),
+            "secret": env("ALLAUTH_SLACK_CLIENT_SECRET", default="PLACEHOLDER"),
+            "key": "",
+            "settings": {
+                "scope": [
+                    "openid",
+                    "profile",
+                    "email"
+                ]
+            }
+        }
     }
 }
 {% endif %}

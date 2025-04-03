@@ -32,6 +32,8 @@ services:
 {%- raw %}
       - ALLAUTH_GITHUB_CLIENT_ID={{ template.env.allauth_github_client_id }}
       - ALLAUTH_GITHUB_CLIENT_SECRET={{ template.env.allauth_github_client_secret }}
+      - ALLAUTH_SLACK_CLIENT_ID={{ template.env.allauth_slack_client_id }}
+      - ALLAUTH_SLACK_CLIENT_SECRET={{ template.env.allauth_slack_client_secret }}
 {%- endraw %}
 {%- endif %}
 {%- if cookiecutter.use_obj_storage %}

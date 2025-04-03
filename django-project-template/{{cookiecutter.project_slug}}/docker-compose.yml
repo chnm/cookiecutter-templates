@@ -25,6 +25,8 @@ services:
 {%- if cookiecutter.use_allauth %}
       - ALLAUTH_GITHUB_CLIENT_ID=PLACEHOLDER
       - ALLAUTH_GITHUB_CLIENT_SECRET=PLACEHOLDER
+      - ALLAUTH_SLACK_CLIENT_ID=PLACEHOLDER
+      - ALLAUTH_SLACK_CLIENT_SECRET=PLACEHOLDER
 {%- endif %}
 {%- if cookiecutter.use_obj_storage %}
       - OBJ_STORAGE=True
