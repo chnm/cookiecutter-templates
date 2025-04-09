@@ -17,7 +17,7 @@ django = "^{{ cookiecutter.django_version }}"
 django-environ = "^0.11.2"
 {%- if cookiecutter.use_allauth %}
 # allauth
-django-allauth = {version="^65.3.1", extras=["slack", "github"]}
+django-allauth = {version="^65.3.1", extras=["slack", "github", "orcid"]}
 {%- endif %}
 {% if cookiecutter.use_tailwind %}
 django-tailwind = "^3.8.0"

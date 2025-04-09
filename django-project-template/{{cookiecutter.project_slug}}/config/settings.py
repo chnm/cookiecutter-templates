@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.orcid',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.slack',
 {%- endif %}
@@ -183,6 +184,14 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
 # allauth: provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
+    'orcid': {
+        'BASE_DOMAIN':'orcid.org',
+        'MEMBER_API': False,
+        "APP": {
+            "client_id": env("ALLAUTH_ORCID_CLIENT_ID", default="PLACEHOLDER"),
+            "secret": env("ALLAUTH_ORCID_CLIENT_SECRET", default="PLACEHOLDER"),
+        },
+    },
     'github': {
         "VERIFIED_EMAIL": True,
         "APP": {
