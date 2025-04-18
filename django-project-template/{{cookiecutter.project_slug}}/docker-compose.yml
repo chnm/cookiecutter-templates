@@ -49,6 +49,7 @@ services:
   db:
     image: postgres:17
     volumes:
+      #- ./initdb:/docker-entrypoint-initdb.d
       - pg-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB={{ cookiecutter.project_slug }}

@@ -93,6 +93,7 @@ services:
     {% if vols is iterable and vols | length > 0 %}
 
     volumes:
+      #- ./initdb:/docker-entrypoint-initdb.d
     {% for vol in vols %}
 
       - {{ vol.name }}:{{ vol.container_path }}
