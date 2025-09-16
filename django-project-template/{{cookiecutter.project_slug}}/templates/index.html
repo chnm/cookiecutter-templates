@@ -27,7 +27,9 @@
 	  <div class="container px-5 py-5 justify-items-center">
             <ul class="list-disc">
               <li><a href="/admin">/admin</a></li>
+{% if cookiecutter.use_allauth %}
               <li><a href="/accounts/">/accounts</a></li>
+{% endif %}
             </ul>
           </div>
 {% if cookiecutter.use_allauth %}
