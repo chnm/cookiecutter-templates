@@ -47,7 +47,7 @@ services:
       db:
         condition: service_healthy
   db:
-    image: postgres:17
+    image: postgres:18
     volumes:
       #- ./initdb:/docker-entrypoint-initdb.d
       - pg-data:/var/lib/postgresql/data
