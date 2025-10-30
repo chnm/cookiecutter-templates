@@ -7,8 +7,8 @@
   "project_author_email": "jason.heppler@gmail.com",
   "project_license": "MIT",
   "initial_app_name": "{{ cookiecutter.project_slug }}",
-  "python_min_version": "3.12",
-  "django_version": "5.1.4",
+  "python_min_version": "3.13",
+  "django_version": "5.2.7",
 
   "database": ["postgres", "sqlite"],
 
