@@ -57,8 +57,8 @@ services:
 {%- endif %}
 {%- raw %}
     command: >
-        sh -c "poetry run python3 manage.py migrate &&
-               poetry run python3 manage.py runserver 0.0.0.0:8000"
+        sh -c "uv run python3 manage.py migrate &&
+               uv run python3 manage.py runserver 0.0.0.0:8000"
     {% if template.volumes is defined %}
     {% set vols = (template.volumes | selectattr('service', 'eq', service)) %}
     {% if vols is iterable and vols | length > 0 %}
@@ -81,7 +81,7 @@ services:
   {% set service = 'db' %}
 
   db:
-    image: postgres:17
+    image: postgres:18
     restart: unless-stopped
     environment:
       - POSTGRES_DB={{ template.env.db_name }}
