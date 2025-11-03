@@ -40,7 +40,8 @@ services:
       - OBJ_STORAGE_BUCKET_NAME=PLACEHOLDER
       - OBJ_STORAGE_ENDPOINT_URL=https://dev.obj.rrchnm.org
     command: >
-        sh -c "uv run python3 manage.py migrate &&
+        sh -c "uv run python3 manage.py migrate --database=default --verbosity=2 &&
+               uv run python3 manage.py migrate {{ cookiecutter.initial_app_name }} --database={{ cookiecutter.initial_app_name }}_db --verbosity=2 &&
                uv run python3 manage.py runserver 0.0.0.0:8000"
 {%- if cookiecutter.database == 'postgres' %}
     depends_on:
@@ -51,7 +52,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      #- ./initdb:/docker-entrypoint-initdb.d
+      - ./initdb:/docker-entrypoint-initdb.d
       - pg-data:/var/lib/postgresql
     environment:
       - POSTGRES_DB={{ cookiecutter.project_slug }}

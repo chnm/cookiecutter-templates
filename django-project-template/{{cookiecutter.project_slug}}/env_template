@@ -7,9 +7,10 @@ DJANGO_CSRF_TRUSTED_ORIGINS='http://localhost'
 
 # Database
 DB_NAME={{ cookiecutter.project_slug }}
-DB_USER=jheppler
+DB_USER={{ cookiecutter.project_slug }}
 DB_PASSWORD=postgres
-DB_HOST=localhost
+#DB_HOST=localhost
+DB_HOST=db
 
 {%- if cookiecutter.use_allauth %}
 # django-allauth
