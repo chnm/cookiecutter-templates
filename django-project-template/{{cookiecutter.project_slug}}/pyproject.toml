@@ -1,46 +1,49 @@
-[tool.poetry]
+[project]
 name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter._project_version }}"
 description = "{{ cookiecutter.project_name }}: {{ cookiecutter.project_description }}"
 authors = ["{{ cookiecutter.project_author_name }} <{{ cookiecutter.project_author_email }}>"]
 license = "{{ cookiecutter.project_license }}"
 readme = "README.md"
-#requires-python = ">={{ cookiecutter.python_min_version }}"
+requires-python = ">={{ cookiecutter.python_min_version }}"
 packages = [{include = "{{ cookiecutter.initial_app_name }}"}]
 
-[tool.poetry.dependencies]
-python = "^{{ cookiecutter.python_min_version }}"
-python-dotenv = "^1.0.1"
-daphne = "^4.1.2"
-whitenoise = "^6.8.2"
-django = "^{{ cookiecutter.django_version }}"
-django-environ = "^0.11.2"
-{%- if cookiecutter.use_allauth %}
-# allauth
-django-allauth = {version="^65.3.1", extras=["slack", "github", "orcid"]}
-{%- endif %}
-{% if cookiecutter.use_tailwind %}
-django-tailwind = "^3.8.0"
-{%- endif %}
-{% if cookiecutter.database == 'postgres' %}
-# postgres
-psycopg2 = "^2.9.10"
-{%- endif %}
+dependencies = [
+  #"python >= {{ cookiecutter.python_min_version }}",
+  "python-dotenv ~= 1.0.1",
+  "daphne ~= 4.2.1",
+  "whitenoise ~= 6.11.0",
+  "django ~= {{ cookiecutter.django_version }}",
+  "django-environ ~= 0.12.0",
+  {%- if cookiecutter.use_allauth %}
+  # allauth
+  "requests",
+  "django-allauth ~= 65.13.0",
+  {%- endif %}
+  {% if cookiecutter.use_tailwind %}
+  "django-tailwind ~= 4.3.1",
+  {%- endif %}
+  {% if cookiecutter.database == 'postgres' %}
+  # postgres
+  "psycopg2-binary ~= 2.9.11",
+  {%- endif %}
 
-# obj storage
-{%- if cookiecutter.use_obj_storage %}
-django-storages = "^1.14.4"
-boto3 = "^1.35.94"
-{%- else %}
-#django-storages = "^1.14.4"
-#boto3 = "^1.35.27"
-{%- endif %}
+  # obj storage
+  {%- if cookiecutter.use_obj_storage %}
+  "django-storages ~= 1.14.6",
+  "boto3 ~= 1.40.64",
+  {%- else %}
+  #"django-storages ~= 1.14.6",
+  #"boto3 ~= 1.40.64",
+  {%- endif %}
+]
 
-[tool.poetry.group.dev.dependencies]
-black = "^24.10.0"
-djhtml = "^3.0.7"
-pre-commit = "^4.0.1"
-django-debug-toolbar = "^4.4.6"
-pytest-django = "^4.9.0"
-pylint-django = "^2.6.1"
-
+[dependency-groups]
+dev = [
+  "black ~= 24.10.0",
+  "djhtml ~= 3.0.7",
+  "pre-commit ~= 4.0.1",
+  "django-debug-toolbar >= 6.1.0",
+  "pytest-django ~= 4.11.1",
+  "pylint-django ~= 2.6.1",
+]
