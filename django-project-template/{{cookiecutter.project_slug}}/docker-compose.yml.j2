@@ -69,6 +69,7 @@ services:
 {%- endraw %}
 {%- endif %}
 {%- raw %}
+
 volumes:
   {{ caddy_vols | indent(width=2, first=True ) }}
   {{ stack | get_all_named_volumes(project_name) | indent(width=2) }}
