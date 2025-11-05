@@ -8,9 +8,16 @@ from core.models import BaseModel
 
 class Person(BaseModel):
 
+    class Meta:
+        db_table_comment = "Person table"
+
     birth_date = models.DateField()
     first_name = models.CharField(max_length=50)
     last_name  = models.CharField(max_length=50)
+
+    def __init__(self):
+        super().__init__()
+        self.logger.debug("new Person")
 
     @property
     def full_name(self):

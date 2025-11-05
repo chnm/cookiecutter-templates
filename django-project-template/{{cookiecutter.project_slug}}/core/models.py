@@ -5,7 +5,18 @@ from django.utils.text import camel_case_to_spaces
 
 logger = logging.getLogger(__name__)
 
+class ModelLoggerAdapter(logging.LoggerAdapter):
+    def process(self, msg, kwargs):
+
+        # add model class name to extra
+        if 'extra' not in kwargs:
+            kwargs['extra'] = {}
+        kwargs['extra']['className'] = self.extra['className']
+
+        return msg, kwargs
+
 class BaseMeta(models.base.ModelBase):
+
     def __new__(cls, name, bases, attrs, **kwargs):
 
         meta = attrs.get('Meta')
@@ -30,5 +41,10 @@ class BaseMeta(models.base.ModelBase):
         return super().__new__(cls, name, bases, attrs, **kwargs)
 
 class BaseModel(models.Model, metaclass=BaseMeta):
+
     class Meta:
         abstract = True
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        cls.logger = ModelLoggerAdapter(logger, {'className': cls.__name__})

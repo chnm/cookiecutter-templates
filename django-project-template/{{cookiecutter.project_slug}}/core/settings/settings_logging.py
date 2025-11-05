@@ -6,15 +6,15 @@ LOGGING = {
     "formatters": {
         "verbose": {
             #"format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-            "format": "{levelname} {asctime} {process:d} [{app_label}.{classname}] {funcName} - {message}",
+            "format": "{asctime} {levelname} {process:d} [{className}.{funcName}] {message}",
             "style": "{",
             'defaults': {
-                'app_label': '{{ cookiecutter.project_slug }}',
-                'classname': 'Unknown',
+                'className': '',
+                'funcName': '',
             }
         },
         "simple": {
-            "format": "{levelname} {message}",
+            "format": "{asctime} {levelname} {message}",
             "style": "{",
         },
     },
