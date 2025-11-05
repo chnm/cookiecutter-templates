@@ -5,10 +5,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from {{ cookiecutter.initial_app_name }}.views import index
+from .views import index as core_index
+from {{ cookiecutter.initial_app_name }}.views import index as {{ cookiecutter.initial_app_name }}_index
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', core_index, name='index'),
+    path('{{ cookiecutter.initial_app_name }}/', {{ cookiecutter.initial_app_name }}_index, name='{{ cookiecutter.initial_app_name }}'),
+
     path('admin/', admin.site.urls),
 {% if cookiecutter.use_allauth %}
     # allauth

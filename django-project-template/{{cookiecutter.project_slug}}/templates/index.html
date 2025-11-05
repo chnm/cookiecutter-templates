@@ -21,8 +21,6 @@
 	  <div class="container mx-auto justify-items-center">
 	    <h1 class="text-4xl">Django + Tailwind = ❤️</h1>
 	    <pre>Hello world!</pre>
-	    <pre>foobar</pre>
-	    <pre>fizzbuzz</pre>
           </div>
 	  <div class="container px-5 py-5 justify-items-center">
             <ul class="list-disc">
@@ -30,6 +28,7 @@
 {% if cookiecutter.use_allauth %}
               <li><a href="/accounts/">/accounts</a></li>
 {% endif %}
+              <li><a href="/{{ cookiecutter.initial_app_name }}">/{{ cookiecutter.initial_app_name }}</a></li>
             </ul>
           </div>
 {% if cookiecutter.use_allauth %}

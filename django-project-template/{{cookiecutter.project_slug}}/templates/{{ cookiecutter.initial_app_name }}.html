@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ cookiecutter.initial_app_name }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">
+</head>
+<body>
+  <header>
+    <h1>{{ cookiecutter.initial_app_name }}</h1>
+    <p>Lorem ipsum<p>
+  </header>
+  <main>
+    <pre>foobar</pre>
+    <pre>fizzbuzz</pre>
+    <button class="contrast" onclick="modalExample.showModal()">Launch demo modal</button>
+  </main>
+  <footer>
+  </footer>
+  <dialog id="modalExample">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" onclick="modalExample.close()"></button>
+        <h3>Confirm your action!</h3>
+      </header>
+      <p>
+        Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus
+        pellentesque. Nullam finibus risus non semper euismod.
+      </p>
+      <footer>
+        <button role="button" onclick="modalExample.close()">Cancel</button
+        ><button autofocus role="button" onclick="modalExample.close()">Confirm</button>
+      </footer>
+    </article>
+  </dialog>
+</body>
+</html>
