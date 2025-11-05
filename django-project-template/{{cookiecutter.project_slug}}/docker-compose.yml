@@ -12,6 +12,7 @@ services:
      #- .:/app
     environment:
       - DEBUG=True
+      - DJANGO_LOG_LEVEL=DEBUG
       - DJANGO_SECRET_KEY=thisisnotasecretkey
       - DJANGO_ALLOWED_HOSTS=localhost
       - DJANGO_CSRF_TRUSTED_ORIGINS=http://localhost

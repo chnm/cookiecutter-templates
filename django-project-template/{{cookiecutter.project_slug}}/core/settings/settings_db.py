@@ -37,6 +37,7 @@ DATABASES = {
 
 DATABASE_ROUTERS = [
     '{{ cookiecutter.initial_app_name }}.routers.DatabaseRouter',
+
     'core.routers.db.AdminRouter',
     'core.routers.db.DefaultRouter',
 ]

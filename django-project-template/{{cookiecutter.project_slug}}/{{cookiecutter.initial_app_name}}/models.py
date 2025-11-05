@@ -1,9 +1,13 @@
 # Create your models here.
 
-from django.db import models
 import datetime
 
-class Person(models.Model):
+from django.db import models
+
+from core.models import BaseModel
+
+class Person(BaseModel):
+
     birth_date = models.DateField()
     first_name = models.CharField(max_length=50)
     last_name  = models.CharField(max_length=50)
