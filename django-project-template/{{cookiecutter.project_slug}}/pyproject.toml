@@ -6,7 +6,7 @@ authors = ["{{ cookiecutter.project_author_name }} <{{ cookiecutter.project_auth
 license = "{{ cookiecutter.project_license }}"
 readme = "README.md"
 requires-python = ">={{ cookiecutter.python_min_version }}"
-packages = [{include = "{{ cookiecutter.initial_app_name }}"}]
+packages = [{include = "test_app1"}]
 
 dependencies = [
   #"python >= {{ cookiecutter.python_min_version }}",

@@ -1,1 +1,1 @@
-CREATE SCHEMA IF NOT EXISTS {{ cookiecutter.initial_app_name }};
+CREATE SCHEMA IF NOT EXISTS test_app1;

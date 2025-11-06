@@ -38,7 +38,7 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
-        "core.models": {
+        "{{ cookiecutter.initial_app_name }}.models": {
             "handlers": ["console_verbose"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": False,

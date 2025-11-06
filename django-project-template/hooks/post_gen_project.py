@@ -23,8 +23,8 @@ else:
 
 if use_tailwind:
   print(f"using tailwind")
-  os.rename(os.path.join(cwd, 'if_use_tailwind_theme'), os.path.join(cwd, 'theme'))
   os.rename(os.path.join(cwd, 'if_use_tailwind_package.json'), os.path.join(cwd, 'package.json'))
+  os.rename(os.path.join(cwd, '{{ cookiecutter.initial_app_name }}/if_use_tailwind_theme'), os.path.join(cwd, '{{ cookiecutter.initial_app_name }}/theme'))
 else:
   print(f"not using tailwind")
   shutil.rmtree(os.path.join(cwd, 'if_use_tailwind_theme'))

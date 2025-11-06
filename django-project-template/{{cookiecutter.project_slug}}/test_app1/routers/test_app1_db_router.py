@@ -1,6 +1,6 @@
 class DatabaseRouter:
 
-    APP_LABEL = "{{ cookiecutter.initial_app_name }}"
+    APP_LABEL = "test_app1"
     DB_NAME = f"{APP_LABEL}_db"
 
     def db_for_read(self, model, **hints):

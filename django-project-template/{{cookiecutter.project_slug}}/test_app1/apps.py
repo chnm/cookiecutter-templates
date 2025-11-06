@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class AppConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "{{ cookiecutter.initial_app_name }}"
+    name = "test_app1"

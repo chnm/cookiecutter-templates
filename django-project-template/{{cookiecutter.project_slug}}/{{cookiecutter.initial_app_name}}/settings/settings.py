@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 {%- if cookiecutter.use_tailwind %}
     # tailwind
     'tailwind',
-    'theme',
+    '{{ cookiecutter.initial_app_name }}.theme',
 {%- endif %}
 {%- if cookiecutter.use_obj_storage %}
     # obj storage
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 {%- endif %}
 
     # local apps
-    '{{ cookiecutter.initial_app_name }}',
+    'test_app1',
 ]
 
 MIDDLEWARE = [
@@ -86,12 +86,12 @@ MIDDLEWARE = [
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = '{{ cookiecutter.initial_app_name }}.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "{{ cookiecutter.initial_app_name }}/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,12 +104,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
-ASGI_APPLICATION = "core.asgi.application"
+WSGI_APPLICATION = "{{ cookiecutter.initial_app_name }}.wsgi.application"
+ASGI_APPLICATION = "{{ cookiecutter.initial_app_name }}.asgi.application"
 
 {%- if cookiecutter.use_tailwind %}
 # Theme
-TAILWIND_APP_NAME = "theme"
+TAILWIND_APP_NAME = "{{ cookiecutter.initial_app_name }}.theme"
 {%- endif %}
 
 # Internationalization

@@ -1,47 +1,50 @@
-# Create your models here.
-
-import datetime
+import logging
 
 from django.db import models
+from django.utils.text import camel_case_to_spaces
 
-from core.models import BaseModel
+logger = logging.getLogger(__name__)
 
-class Person(BaseModel):
+class ModelLoggerAdapter(logging.LoggerAdapter):
+    def process(self, msg, kwargs):
+
+        # add model class name to extra
+        if 'extra' not in kwargs:
+            kwargs['extra'] = {}
+        kwargs['extra']['className'] = self.extra['className']
+
+        return msg, kwargs
+
+class BaseMeta(models.base.ModelBase):
+
+    def __new__(cls, name, bases, attrs, **kwargs):
+
+        meta = attrs.get('Meta')
+
+        if meta:
+            logger.debug(f"{name} has meta")
+
+            if (
+                not hasattr(meta, 'db_table')
+                and not getattr(meta, 'abstract', False)
+            ):
+                logger.debug(f"{name} is concrete and has no db_table meta")
+                meta.db_table = name.lower()
+            else:
+                logger.debug(f"{name} is abstract or has db_table meta")
+        else:
+            logger.debug(f"{name} has no meta")
+            class Meta:
+                db_table = name.lower()
+            attrs['Meta'] = Meta
+
+        return super().__new__(cls, name, bases, attrs, **kwargs)
+
+class BaseModel(models.Model, metaclass=BaseMeta):
 
     class Meta:
-        db_table_comment = "Person table"
+        abstract = True
 
-    birth_date = models.DateField()
-    first_name = models.CharField(max_length=50)
-    last_name  = models.CharField(max_length=50)
-
-    def __init__(self):
-        super().__init__()
-        self.logger.debug("new Person")
-
-    @property
-    def full_name(self):
-        return f"{self.first_name} {self.last_name}"
-
-    # llm came up with these ranges 🤷
-    def generation(self):
-        year = self.birth_date.year
-        if year < 1900:
-            return "Before 20th Century"
-        elif 1900 <= year <= 1927:
-            return "The Greatest Generation"
-        elif 1928 <= year <= 1945:
-            return "Silent Generation"
-        elif 1946 <= year <= 1964:
-            return "Baby Boomer"
-        elif 1965 <= year <= 1980:
-            return "Generation X"
-        elif 1981 <= year <= 1996:
-            return "Millennial (Gen Y)"
-        elif 1997 <= year <= 2012:
-            return "Generation Z"
-        elif year >= 2013:
-            return "Generation Alpha"
-        else:
-            return "Unknown Generation"
-
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        cls.logger = ModelLoggerAdapter(logger, {'className': cls.__name__})
