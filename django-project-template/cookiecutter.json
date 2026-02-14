@@ -3,10 +3,12 @@
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
   "_project_version": "0.1.0",
   "project_description": "Lorem ipsum dolor sit amet",
-  "project_author_name": "Jason Heppler",
-  "project_author_email": "jason.heppler@gmail.com",
+  "project_author_name": "RRCHNM",
+  "project_author_email": "chnm@gmu.edu",
   "project_license": "MIT",
   "initial_app_name": "{{ cookiecutter.project_slug }}",
+  "include_test_app": true,
+  "use_docker": true,
   "python_min_version": "3.13",
   "django_version": "5.2.7",
 
@@ -21,6 +23,8 @@
     "project_slug": "Enter project slug (will be used in project file structure and configuration files)",
     "project_description": "Enter brief project description",
     "initial_app_name": "Initial Django app to be created",
+    "include_test_app": "Do you want to include the test app?",
+    "use_docker": "Do you want to use Docker for containerization?",
     "python_min_version": "Enter the minimum Python version to be supported",
     "django_version": "Enter the Django package version to be used",
     "database": {

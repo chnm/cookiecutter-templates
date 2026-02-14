@@ -6,11 +6,15 @@ from django.contrib import admin
 from django.urls import include, path
 
 from .views import index as {{ cookiecutter.initial_app_name }}_index
-from test_app1.views import index as test_app1_index
+{%- if cookiecutter.include_test_app %}
+from test_app.views import index as test_app_index
+{%- endif %}
 
 urlpatterns = [
     path('', {{ cookiecutter.initial_app_name }}_index, name='index'),
-    path('test_app1/', test_app1_index, name='test_app1'),
+{%- if cookiecutter.include_test_app %}
+    path('test_app/', test_app_index, name='test_app'),
+{%- endif %}
 
     path('admin/', admin.site.urls),
 {% if cookiecutter.use_allauth %}

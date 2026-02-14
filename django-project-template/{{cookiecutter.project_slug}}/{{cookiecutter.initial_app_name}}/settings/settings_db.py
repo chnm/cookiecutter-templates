@@ -21,7 +21,8 @@ DATABASES = {
             "options": "-c search_path=public"
         },
     },
-    "test_app1_db": {
+{% if cookiecutter.include_test_app %}
+    "test_app_db": {
         "ENGINE": "django.db.backends.postgresql",
         "HOST": env("DB_HOST", default="localhost"),
         "PORT": env("DB_PORT", default="5432"),
@@ -29,14 +30,17 @@ DATABASES = {
         "USER": env("DB_USER", default="{{ cookiecutter.project_slug }}"),
         "PASSWORD": env("DB_PASS", default="password"),
         "OPTIONS": {
-            "options": "-c search_path=test_app1"
+            "options": "-c search_path=test_app"
         },
     },
+{% endif %}
 {% endif %}
 }
 
 DATABASE_ROUTERS = [
-    'test_app1.routers.DatabaseRouter',
+{% if cookiecutter.include_test_app %}
+    'test_app.routers.DatabaseRouter',
+{% endif %}
 
     '{{ cookiecutter.initial_app_name }}.routers.db.AdminRouter',
     '{{ cookiecutter.initial_app_name }}.routers.db.DefaultRouter',

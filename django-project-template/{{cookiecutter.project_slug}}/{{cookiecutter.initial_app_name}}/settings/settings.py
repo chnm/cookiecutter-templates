@@ -66,7 +66,9 @@ INSTALLED_APPS = [
 {%- endif %}
 
     # local apps
-    'test_app1',
+{%- if cookiecutter.include_test_app %}
+    'test_app',
+{%- endif %}
 ]
 
 MIDDLEWARE = [

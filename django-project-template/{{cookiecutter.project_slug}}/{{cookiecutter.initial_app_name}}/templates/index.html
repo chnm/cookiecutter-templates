@@ -18,36 +18,146 @@
 	</head>
 
 	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-	  <div class="container mx-auto justify-items-center">
-	    <h1 class="text-4xl">Django + Tailwind = ❤️</h1>
-	    <pre>Hello world!</pre>
-          </div>
-	  <div class="container px-5 py-5 justify-items-center">
-            <ul class="list-disc">
-              <li><a href="/admin">/admin</a></li>
-{% if cookiecutter.use_allauth %}
-              <li><a href="/accounts/">/accounts</a></li>
+	  <div class="container mx-auto px-5 py-10">
+	    <h1 class="text-4xl font-bold mb-6">{{ cookiecutter.project_name }}</h1>
+	    <p class="text-lg mb-8">{{ cookiecutter.project_description }}</p>
+
+	    <!-- Project Configuration Summary -->
+	    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+	      <h2 class="text-2xl font-semibold mb-4 border-b pb-2">Project Configuration</h2>
+
+	      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+	        <div class="space-y-3">
+	          <div>
+	            <span class="font-semibold text-gray-700">Project Name:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.project_name }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Project Slug:</span>
+	            <span class="ml-2 text-gray-900 font-mono text-sm">{{ cookiecutter.project_slug }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Initial App Name:</span>
+	            <span class="ml-2 text-gray-900 font-mono text-sm">{{ cookiecutter.initial_app_name }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Author:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.project_author_name }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Email:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.project_author_email }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">License:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.project_license }}</span>
+	          </div>
+	        </div>
+
+	        <div class="space-y-3">
+	          <div>
+	            <span class="font-semibold text-gray-700">Python Version:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.python_min_version }}+</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Django Version:</span>
+	            <span class="ml-2 text-gray-900">{{ cookiecutter.django_version }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Database:</span>
+	            <span class="ml-2 text-gray-900 uppercase">{{ cookiecutter.database }}</span>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Include Test App:</span>
+{% if cookiecutter.include_test_app %}
+	            <span class="ml-2 text-green-600 font-semibold">✓ Yes</span>
+{% else %}
+	            <span class="ml-2 text-red-600 font-semibold">✗ No</span>
 {% endif %}
-              <li><a href="/test_app1">/test_app1</a></li>
-            </ul>
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Use Docker:</span>
+{% if cookiecutter.use_docker %}
+	            <span class="ml-2 text-green-600 font-semibold">✓ Yes</span>
+{% else %}
+	            <span class="ml-2 text-red-600 font-semibold">✗ No</span>
+{% endif %}
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">TailwindCSS:</span>
+{% if cookiecutter.use_tailwind %}
+	            <span class="ml-2 text-green-600 font-semibold">✓ Enabled</span>
+{% else %}
+	            <span class="ml-2 text-red-600 font-semibold">✗ Disabled</span>
+{% endif %}
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">Object Storage:</span>
+{% if cookiecutter.use_obj_storage %}
+	            <span class="ml-2 text-green-600 font-semibold">✓ Enabled</span>
+{% else %}
+	            <span class="ml-2 text-red-600 font-semibold">✗ Disabled</span>
+{% endif %}
+	          </div>
+	          <div>
+	            <span class="font-semibold text-gray-700">AllAuth (Social Auth):</span>
+{% if cookiecutter.use_allauth %}
+	            <span class="ml-2 text-green-600 font-semibold">✓ Enabled</span>
+{% else %}
+	            <span class="ml-2 text-red-600 font-semibold">✗ Disabled</span>
+{% endif %}
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+
+	    <!-- Quick Links -->
+	    <div class="bg-white shadow-md rounded-lg p-6">
+	      <h2 class="text-2xl font-semibold mb-4 border-b pb-2">Quick Links</h2>
+	      <ul class="space-y-2">
+	        <li><a href="/admin" class="text-blue-600 hover:text-blue-800 hover:underline">/admin - Django Admin Interface</a></li>
+{% if cookiecutter.use_allauth %}
+	        <li><a href="/accounts/" class="text-blue-600 hover:text-blue-800 hover:underline">/accounts - User Accounts & Authentication</a></li>
+{% endif %}
+{% if cookiecutter.include_test_app %}
+	        <li><a href="/test_app" class="text-blue-600 hover:text-blue-800 hover:underline">/test_app - Example Test Application</a></li>
+{% endif %}
+	      </ul>
+	    </div>
           </div>
 {% if cookiecutter.use_allauth %}
 {% raw %}
 {% load socialaccount %}
-{% block content %}
-	  <div class="container mx-auto justify-items-center">
+	  <div class="container mx-auto px-5 py-5">
+	    <div class="bg-white shadow-md rounded-lg p-6">
+	      <h2 class="text-2xl font-semibold mb-4 border-b pb-2">Authentication</h2>
 {% if user.is_authenticated %}
-            <p>Username: {{ user.username }}</p>
-	    <p>Email: {{ user.email }}</>
-	    <a href="{% url 'account_logout' %}">Logout</a>
+	      <div class="space-y-3">
+	        <div>
+	          <span class="font-semibold text-gray-700">Username:</span>
+	          <span class="ml-2 text-gray-900">{{ user.username }}</span>
+	        </div>
+	        <div>
+	          <span class="font-semibold text-gray-700">Email:</span>
+	          <span class="ml-2 text-gray-900">{{ user.email }}</span>
+	        </div>
+	        <div class="pt-4">
+	          <a href="{% url 'account_logout' %}" class="inline-block px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Logout</a>
+	        </div>
+	      </div>
 {% else %}
-            <a class="p-2 text-blue-500 rounded-md border" href="{% url 'account_login' %}">Login</a>
-            <a class="p-2 text-blue-500 rounded-md border" href="{% url 'account_signup' %}">Signup</a>
-            <a class="p-2 text-blue-500 rounded-md border" href="{% provider_login_url 'github' %}">Sign Up with GitHub</a>
-            <a class="p-2 text-blue-500 rounded-md border" href="{% provider_login_url 'slack' %}">Sign Up with Slack</a>
+	      <div class="space-y-3">
+	        <p class="text-gray-600 mb-4">Sign in to access your account or create a new one.</p>
+	        <div class="flex flex-wrap gap-3">
+	          <a class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition" href="{% url 'account_login' %}">Login</a>
+	          <a class="px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-700 transition" href="{% url 'account_signup' %}">Signup</a>
+	          <a class="px-4 py-2 text-white bg-gray-800 rounded-md hover:bg-gray-900 transition" href="{% provider_login_url 'github' %}">Sign in with GitHub</a>
+	          <a class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700 transition" href="{% provider_login_url 'slack' %}">Sign in with Slack</a>
+	        </div>
+	      </div>
 {% endif %}
-          </div>
-{% endblock content %}
+	    </div>
+	  </div>
 {% endraw %}
 {% endif %}
 	</body>
